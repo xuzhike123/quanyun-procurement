@@ -1,0 +1,41 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\approval-route.md": "f2092d97de28f65630f91f4daead76aa87b80c66716a93aba5749ec58a76dbb2",
+    "references\\capabilities\\archive-reporting.md": "c20374cd6d4fecc46c7f489dafc33347b345ad18fd1dbaf07db314482967654a",
+    "references\\capabilities\\compliance-redline.md": "4a9ab98e50c1ea219d690ca4314003181f73136faaf5d6c07613f875ec9ff7f2",
+    "references\\capabilities\\internal-pricing.md": "58057473d11b57c251cd763c74d23038e38ab679a1dca8039687328221f75470",
+    "references\\capabilities\\minor-emergency.md": "843933165e1cc3025abd2f72d2e16d621265652f3c7f037d4d2a25196a9cd4ff",
+    "references\\capabilities\\procurement-method.md": "857d11ebd81442a6bca3da46a03ab95e5a7a74ad1374a0d490d9bdf01618a31c",
+    "references\\capabilities\\scope-attribution.md": "9412d52f180cf7ff6ce53ae93e9fb609ea3ed49ecfce08651e3bfc137bd9e98b",
+    "references\\capabilities\\szyd-procedure.md": "9ec956b54118d4c010ad9fa8432665ea94716a1b23e149aff90a9124e432f118",
+    "references\\capabilities\\szyd-routing.md": "17dc546582d368110070d12240461af395035c45ea0e47ab533bf4de67b11bb1",
+    "references\\capability-index.md": "e2d86510577f25bbab2e60d6ab13a53d2f62320e72509e4ad742bdc9d23839d2",
+    "references\\cheatsheet.md": "a6c5931fd4bd7f424c4e1c47e3395272da3de31f23a438a0f09a04c596e52578",
+    "references\\glossary.md": "9bce8f92c8c599b74be5f41e2bf47513fb79084b0376db811e7d032b2dfe2138",
+    "references\\overview.md": "6a71f47e2f77cb34b6614a1bcab0695210fabdd945ab3fd7ab5e44b1a703b050",
+    "resources\\approval-matrix.csv": "1fdbbae3f0558041399222768ec382e286786f631cd7ddcafe70af5e60bdc8a0",
+    "resources\\department-attribution.md": "c0cd092b96c212eeea63183fd92d8c75e6db01d0e5fa07cb997c17a48b033921",
+    "SKILL.md": "6b843a7640c2c35691bfa2549d33133b2bf58c30e0936904f5f88e7afa72d915"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.quanyun-procurement",
+  "bundle_sha256": "4b316fd8a59bc3ed90b1c842c51c8d7e5f7991b4e87603bb16cb9b8122142db5",
+  "variant": "single",
+  "run_id": "run-20261028-185738-9249d1",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 0,
+    "capability_count": 9,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 0 个晋级 Skill，共 1 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "bundle_id": "bundle.quanyun-procurement",
+  "destinations": {
+    "cap.quanyun.scope-attribution": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.approval-route": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.procurement-method": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.minor-emergency": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.internal-pricing": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.archive-reporting": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.szyd-routing": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.szyd-procedure": { "served_by": "quanyun-procurement" },
+    "cap.quanyun.compliance-redline": { "served_by": "quanyun-procurement" }
+  }
+}
