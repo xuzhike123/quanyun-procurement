@@ -1,10 +1,12 @@
-# quanyun-procurement
+# qycg-skill（仓库沿原名 quanyun-procurement）
 
-把福建省泉运实业集团有限公司（泉运集团）的三份现行规章蒸馏成的一套可执行 Agent Skill：不问"书里写了什么"，而问"这笔采购该谁批、这个事项该上哪个会"。
+把福建省泉运实业集团有限公司（泉运集团）与泉州交通发展集团（交发集团）的现行采购规章蒸馏成的一套可执行 Agent Skill：不问"书里写了什么"，而问"这笔采购该谁批、这个事项该上哪个会、这份招标文件挂网前要不要过联合会审"。
+
+> 技能名已统一为 `qycg-skill`（与本地安装版及开放平台上传包一致），GitHub 仓库名保留 `quanyun-procurement` 不变。
 
 ## 这套 Skill 解决什么问题
 
-国企采购与决策的难点不在条文多少，而在三个断点：**金额落在哪个档、归口是哪个部室、事项归哪个议事主体**。这套 Skill 把散在 11 章 54 条里的规则压成 9 张能力卡，每张卡都给出可执行步骤与判停条件。
+国企采购与决策的难点不在条文多少，而在三个断点：**金额落在哪个档、归口是哪个部室、事项归哪个议事主体**。这套 Skill 把散在四份文件里的规则压成 10 张能力卡，每张卡都给出可执行步骤与判停条件。
 
 覆盖范围：
 
@@ -17,44 +19,46 @@
 - 三重一大议事主体归属（党委会 13 项 / 董事会 19 项 / 总经理办公会 12 项及金额阈值）
 - 三重一大六步决策程序与追认、零报告
 - 廉洁红线、监督分工与追责免责
+- **招标文件联合会审（v1.1 新增）**：依法必须招标工程 / 非工程类与工程服务类 200 万元（含）以上的招标文件，挂网前须经交发集团联合会审——八步流程、配套材料、一次审结、公示后 5 个工作日 OA 备案
 
 ## 安装
 
 用户级安装（所有项目可用）：
 
 ```bash
-git clone https://github.com/<your-name>/quanyun-procurement.git ~/.workbuddy/skills/quanyun-procurement
+git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/skills/qycg-skill
 ```
 
-项目级安装（只在某个项目可用）：把仓库克隆到 `<项目>/.workbuddy/skills/quanyun-procurement`。
+项目级安装（只在某个项目可用）：把仓库克隆到 `<项目>/.workbuddy/skills/qycg-skill`。
 
 安装后新开一个任务即可触发，例如：
 
 - 「权属企业要买 60 万元车辆保险，预算内，怎么走」
 - 「150 万元的物资采购要不要上董事会」
 - 「设备故障急着买，能不能先买后补」
+- 「这批 300 万的设备招标文件挂网前要办什么手续」
 
 ## 目录结构
 
 ```
 .
 ├── SKILL.md                    # 入口：核心原则 + 能力路由表 + 判停条件
-├── references/
-│   ├── capabilities/           # 9 张能力卡（R/I/A1/A2/E/B 六段）
-│   ├── overview.md             # 三份文件的整体理解与批判性阅读
+├── references/                 # 10 张能力卡（R/I/A1/A2/E/B 六段）+ 4 张全书卡
+│   ├── overview.md             # 四份文件的整体理解与批判性阅读
 │   ├── glossary.md             # 术语表
 │   ├── cheatsheet.md           # 速查
-│   └── capability-index.md     # 意图与关键词索引
+│   ├── capability-index.md     # 意图与关键词索引
+│   └── tender-joint-review.md  # 联合会审能力卡（v1.1 新增）
 ├── resources/
 │   ├── approval-matrix.csv     # 金额档 × 主体 × 审批链矩阵
 │   └── department-attribution.md # 归口管理部室对照
-├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成）
+├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成，v1.1 增量重算）
 └── books/quanyun-procurement/  # 蒸馏过程与审计轨迹
     ├── DIGEST.md               # 面向读者的精华长文
     ├── verified.md             # 三重验证与压力测试记录
     ├── coverage-audit.md       # 关键任务 → 交付去向审计
     ├── needs-review.md         # 条文冲突与来源缺口
-    └── .cangjie/capabilities/  # 唯一编译事实源（verified.yaml + cards/）
+    └── .cangjie/capabilities/  # 唯一编译事实源（verified.yaml + cards/，v1.0 状态）
 ```
 
 ## 来源
@@ -64,6 +68,12 @@ git clone https://github.com/<your-name>/quanyun-procurement.git ~/.workbuddy/sk
 | 闽泉运综合〔2026〕60号 | 泉运集团《物资采购及购买服务管理办法》（含附件 1–8） | 2026-10-03 |
 | 泉交发〔2026〕62号 | 交发集团《集团物资采购及购买服务管理办法》 | 2026-03-25 |
 | 闽泉运党委〔2026〕78号 | 泉运集团《"三重一大"决策制度实施办法》（含报告表） | 2026-10-03 |
+| 泉交发〔2026〕244号 | 交发集团《招标文件联合会审实施细则》（v1.1 新增） | 2026-10-20 |
+
+## 版本记录
+
+- **v1.0.0**（2026-10-28）：三份规章蒸馏，9 张能力卡，RIA-TV++ 流水线全量编译。
+- **v1.1.0**（2026-11-03）：新增泉交发〔2026〕244号《招标文件联合会审实施细则》，新增 `tender-joint-review` 能力卡；SKILL.md 路由、触发词与 4 张全书卡同步扩充；`references/` 卡片扁平化为两级结构（与开放平台上传包一致）；BUILD_MANIFEST 哈希全量重算。
 
 ## 已知问题
 
@@ -75,8 +85,8 @@ git clone https://github.com/<your-name>/quanyun-procurement.git ~/.workbuddy/sk
 
 ## 生成方式
 
-由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：9 项能力全部通过三重验证，全部保留在单一入口内（single 模式），编译产物通过 `validate_skill_pack.py` 校验（0 error）。
+由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：v1.0 九项能力全部通过三重验证，全部保留在单一入口内（single 模式）；v1.1 为增量更新（新增能力卡直接同步自安装版并重算清单哈希），编译产物通过 `validate_skill_pack.py` 校验（0 error / 0 warning）。
 
 ## 许可证
 
-未指定。如需开源复用，请先补充 LICENSE。
+未指定。如需开源复用，请先补充 LICENSE。**注意：仓库内容源自企业内部规章的蒸馏，当前为公开仓库，公开前请自行确认无泄密风险。**

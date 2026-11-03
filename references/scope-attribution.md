@@ -58,6 +58,7 @@
 
 - 与 `approval-route` 的区别：本卡只回答"归不归这套制度管、谁归口"，不回答金额定档和审批链。
 - 与 `procurement-method` 的区别：本卡不涉及公开招标还是邀请招标，那是射程确认之后的问题。
+- 与 `tender-joint-review` 的区别：本卡只判断采购是否归泉运集团采购办法射程；依法必须招标的工程项目、非工程类 200 万元（含）以上、工程服务类 200 万元（含）以上的招标文件，即便本卡判定归属，挂网前仍须过交发集团联合会审（见 tender-joint-review）。
 
 ## E — 可执行步骤 (Execution)
 
@@ -85,4 +86,4 @@
 
 路径相对于本文件；脚本需先检查运行条件，不因附带而自动执行。
 
-- [resources/department-attribution.md](../../resources/department-attribution.md)
+- [resources/department-attribution.md](../resources/department-attribution.md)

@@ -1,14 +1,32 @@
 ---
-name: quanyun-procurement
+name: qycg-skill
+display_name: 泉运集团采购与三重一大决策助手
+display_name_en: Quanyun Procurement and Major Decision Assistant
+version: 1.0.0
+author: xuzhike123
+agent_created: true
+description_zh: 面向泉运集团及其权属企业，判断一笔采购是否适用采购管理办法、归口哪个部室、金额属于哪一档、该采用哪种采购方式、由党委会还是董事会或总经理办公会审批，并给出从立项到归档的完整环节与条文依据；对达到依法必须招标或 200 万元（含）以上门槛的招标文件，补充其挂网前须经交发集团联合会审的步骤、材料与会议要求。
+description_en: For Quanyun Group and its subsidiaries, decides whether a purchase falls under the procurement policy, which department owns it, which amount tier and procurement method apply, and whether the Party committee, board or general manager office must approve it, with clause-level citations for every step from budgeting to archiving; for tender documents that are legally required to be tendered or exceed 2 million CNY, also covers the pre-publication joint review by the transportation group.
+examples_zh:
+- 我要买一辆 60 万元的大巴车，帮我发起采购流程
+- 这笔 25 万元的车辆保险该谁审批，要不要上会
+- 这事该上党委会还是董事会，需要党委前置研究吗
+- 这批 300 万的设备招标文件要不要先过联合会审
+examples_en:
+- I need to buy a 600,000 CNY coach bus, walk me through the approval process
+- Who approves this 250,000 CNY vehicle insurance purchase, and does it need a committee meeting
+- Should this go to the Party committee or the board, and is prior Party study required
+- Do these 3-million-CNY tender documents need the group joint review before publication
 description: |
-  当用户要判断泉运集团（福建省泉运实业集团有限公司）及其权属企业的采购该怎么走流程、该谁批、该用哪种采购方式，或者要判断某事项属于党委会/董事会/总经理办公会哪一主体决策时调用。覆盖：制度射程与归口部室、金额分档与审批链（1万/20万/50万/200万/500万/1000万/2000万）、公开招标与邀请招标及单一来源例外、流标二次招标、零星小额月度归集与应急采购补手续、内部采购定价标准、台账备案与季度年度报送、三重一大议事主体归属与六步决策程序、廉洁红线与责任追究。不适用于工程建设项目招投标、法律意见与审计结论出具。Triggers: 泉运集团/交发集团/采购审批/采购方式/限额以上/限额以下/零星小额/内部采购/三重一大/党委前置研究/董事会审议/总经理办公会/归口部室/采购会签单/阳光采购平台
+  当用户要判断泉运集团（福建省泉运实业集团有限公司）及其权属企业的采购该怎么走流程、该谁批、该用哪种采购方式，或者要判断某事项属于党委会/董事会/总经理办公会哪一主体决策时调用。覆盖：制度射程与归口部室、金额分档与审批链（1万/20万/50万/200万/500万/1000万/2000万）、公开招标与邀请招标及单一来源例外、流标二次招标、零星小额月度归集与应急采购补手续、内部采购定价标准、台账备案与季度年度报送、三重一大议事主体归属与六步决策程序、廉洁红线与责任追究，以及达到依法必须招标或 200 万元（含）以上门槛的招标文件在挂网前须经交发集团联合会审的步骤、材料与会议要求。不适用于工程建设项目招投标、法律意见与审计结论出具。Triggers: 泉运集团/交发集团/采购审批/采购方式/限额以上/限额以下/零星小额/内部采购/三重一大/党委前置研究/董事会审议/总经理办公会/归口部室/采购会签单/阳光采购平台/招标文件联合会审/挂网前审查/招标采购中心/归口业务部室/一次审结/合法合规性审查
 metadata:
   cangjie.generated-by: cangjie-tools v2.5.0
   cangjie.variant: single
   cangjie.bundle-id: bundle.quanyun-procurement
-  cangjie.capability-count: 9
+  cangjie.capability-count: 10
   cangjie.entrypoint-count: 1
 ---
+
 # 泉运集团非工程类采购与"三重一大"决策制度汇编 — 全书能力入口
 
 ## 触发与不触发
@@ -29,20 +47,22 @@ metadata:
 5. 决策与执行分离。需求、询价、定价、采购、验收、结算必须分岗分设，任何一人到底的安排都不合规。
 6. 三重一大看事项类型而非金额。同一笔支出归党委会、董事会还是总经理办公会，由事项性质决定；党委会只做前置研究，不做前置决定。
 7. 留痕即合规。会议纪要、会签单、台账、备案表、验收单缺一项，事后追责时企业无法自证。
+8. 联合会审是挂网前的集团级最后一关。依法必须招标的工程项目，以及非工程类、工程服务类 200 万元（含）以上的项目，招标文件须在权属企业完成内部三重一大决策、将文件及决策材料报送交发集团后，经联合会审并签订确认表，方可挂网；权属企业自身决策不替代该集团会审。
 
 ## 能力路由（先读本表，按意图加载 1 张能力卡）
 
 | 用户意图 | 先读 | 补读/备注 |
 |---|---|---|
-| 这笔采购适不适用采购办法；该找哪个部室归口；工程和采购混在一起怎么分 | references/capabilities/scope-attribution.md | references/capabilities/approval-route.md、references/capabilities/procurement-method.md |
-| 这笔采购该谁审批；要不要上会，上哪个会；预算外和超预算怎么重新报批 | references/capabilities/approval-route.md | references/capabilities/scope-attribution.md、references/capabilities/szyd-routing.md、references/capabilities/archive-reporting.md |
-| 这个项目能不能不公开招标；邀请招标要满足什么条件；流标了怎么办；采购方式怎么选 | references/capabilities/procurement-method.md | references/capabilities/approval-route.md、references/capabilities/scope-attribution.md |
-| 零星小额怎么报；急事来不及审批怎么办；能不能先采购后补手续 | references/capabilities/minor-emergency.md | references/capabilities/approval-route.md、references/capabilities/compliance-redline.md |
-| 内部采购定价怎么定；上浮下浮比例是多少；旅游包车内部结算价 | references/capabilities/internal-pricing.md | references/capabilities/procurement-method.md、references/capabilities/compliance-redline.md |
-| 台账什么时候报；备案表怎么填；年度执行情况什么时候交 | references/capabilities/archive-reporting.md | references/capabilities/approval-route.md、references/capabilities/compliance-redline.md |
-| 这事该上党委会还是董事会；多少金额要上董事会；党委前置研究怎么用 | references/capabilities/szyd-routing.md | references/capabilities/szyd-procedure.md、references/capabilities/approval-route.md |
-| 三重一大会议怎么开；会上怎么表决；紧急情况能不能先定后报；决策后能不能改 | references/capabilities/szyd-procedure.md | references/capabilities/szyd-routing.md、references/capabilities/compliance-redline.md |
-| 采购人员不能做什么；供应商违规怎么处理；决策失误怎么追责 | references/capabilities/compliance-redline.md | references/capabilities/szyd-procedure.md、references/capabilities/minor-emergency.md |
+| 这笔采购适不适用采购办法；该找哪个部室归口；工程和采购混在一起怎么分 | references/scope-attribution.md | references/approval-route.md、references/procurement-method.md |
+| 这笔采购该谁审批；要不要上会，上哪个会；预算外和超预算怎么重新报批 | references/approval-route.md | references/scope-attribution.md、references/szyd-routing.md、references/archive-reporting.md |
+| 这个项目能不能不公开招标；邀请招标要满足什么条件；流标了怎么办；采购方式怎么选 | references/procurement-method.md | references/approval-route.md、references/scope-attribution.md |
+| 招标文件要不要先过联合会审；联合会审走哪些步骤、要准备哪些材料、会议怎么开 | references/tender-joint-review.md | references/procurement-method.md（先定采购方式）、references/szyd-routing.md（权属企业先决策） |
+| 零星小额怎么报；急事来不及审批怎么办；能不能先采购后补手续 | references/minor-emergency.md | references/approval-route.md、references/compliance-redline.md |
+| 内部采购定价怎么定；上浮下浮比例是多少；旅游包车内部结算价 | references/internal-pricing.md | references/procurement-method.md、references/compliance-redline.md |
+| 台账什么时候报；备案表怎么填；年度执行情况什么时候交 | references/archive-reporting.md | references/approval-route.md、references/compliance-redline.md |
+| 这事该上党委会还是董事会；多少金额要上董事会；党委前置研究怎么用 | references/szyd-routing.md | references/szyd-procedure.md、references/approval-route.md |
+| 三重一大会议怎么开；会上怎么表决；紧急情况能不能先定后报；决策后能不能改 | references/szyd-procedure.md | references/szyd-routing.md、references/compliance-redline.md |
+| 采购人员不能做什么；供应商违规怎么处理；决策失误怎么追责 | references/compliance-redline.md | references/szyd-procedure.md、references/minor-emergency.md |
 
 **非能力类查询**：
 - 书名/作者/章节/整书概览 → references/overview.md
@@ -58,6 +78,6 @@ metadata:
 
 ## 边界与判停
 
-- 三份制度对同一事项给出不同审批主体时（例如 50 万元以上物资采购究竟归董事会还是总经理办公会），停止自行取舍，列出冲突条文交人工确认。
+- 既有制度对同一事项给出不同审批主体时（例如 50 万元以上物资采购究竟归董事会还是总经理办公会），停止自行取舍，列出冲突条文交人工确认。
 - 采购金额、采购类型或是否预算内无法确定时，先索要数据，不猜测档位。
 - 涉及具体人员的责任认定、纪律处分定性，只提供制度依据，不作定性结论。

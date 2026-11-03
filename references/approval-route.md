@@ -88,4 +88,4 @@
 
 路径相对于本文件；脚本需先检查运行条件，不因附带而自动执行。
 
-- [resources/approval-matrix.csv](../../resources/approval-matrix.csv)
+- [resources/approval-matrix.csv](../resources/approval-matrix.csv)

@@ -30,3 +30,20 @@ python scripts/cangjie.py compile \
 ```
 
 不要直接手改编译产物，否则下次编译会被判定为本地手改并拒绝覆盖。
+
+## v1.1.0 增量更新（2026-11-03，流水线外）
+
+新增素材：泉交发〔2026〕244号《招标文件联合会审实施细则》（交发集团，2026-10-20 印发，集团 2026 年第 13 次总经理办公会议通过；全文提取件存工作区 `_src/d4.txt`）。
+
+本次为**增量更新**，编译产物（仓库根目录）直接同步自安装版 `~/.workbuddy/skills/qycg-skill` v1.1.0：
+
+- 新增第 10 张能力卡 `tender-joint-review.md`（招标文件联合会审：门槛 / 八步流程 / 责任链 / 配套材料 / 一次审结 / 5 个工作日 OA 备案）；
+- `SKILL.md`：路由表新增一行、核心原则新增第 8 条、description 触发词扩充、capability-count 9→10；
+- `overview.md` / `glossary.md` / `cheatsheet.md` / `capability-index.md` 同步扩充；
+- `procurement-method.md` / `scope-attribution.md` 增加与联合会审卡的交叉引用；
+- `references/` 卡片由 `references/capabilities/` 三级结构扁平化为两级（与开放平台上传包一致）；
+- `BUILD_MANIFEST.json` 哈希全量重算。
+
+**注意**：`books/quanyun-procurement/.cangjie/capabilities/` 下的 bundle（verified.yaml + cards/）仍为 v1.0 状态，未补录第 10 项能力。下次全量重编译前，需先将 `tender-joint-review` 按既有条目格式补录进 `verified.yaml`（含 intents / keywords / also_read），否则流水线会忽略该卡。
+
+技能名变更：v1.1 起技能 `name` 统一为 `qycg-skill`（避免与历史安装副本触发词冲突），bundle-id 保留 `bundle.quanyun-procurement`。
