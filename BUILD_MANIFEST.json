@@ -3,13 +3,13 @@
   "published_hashes": {
     "references/approval-route.md": "e4610d7e644eee826911c2bd9601a99850321c37a4ec9fbd84b33b334f537421",
     "references/archive-reporting.md": "c20374cd6d4fecc46c7f489dafc33347b345ad18fd1dbaf07db314482967654a",
-    "references/capability-index.md": "f9e39237efa8de1ad9debece53edbe7e7747276f37a15a468466f10372743f6a",
-    "references/cheatsheet.md": "5fe8ea37a90017e558edfecfb8528643ff1baa3b029a9e17d7b7f27e87b4ddf6",
+    "references/capability-index.md": "c4bd725efc4810f301288f23e76462e467c7bcd95df7df4c8718fa598571570e",
+    "references/cheatsheet.md": "15b9b041da92d0433dd165de2494c7ea4662b7dde533db77912d77be7abe915b",
     "references/compliance-redline.md": "4a9ab98e50c1ea219d690ca4314003181f73136faaf5d6c07613f875ec9ff7f2",
-    "references/glossary.md": "eaae74aa186f61f47bc8440ae3e60f0a55b7941aaa8198e3de225473aefdb775",
+    "references/glossary.md": "0856f82bd0eb12c26ae1537fb67929b96d1cfe6a205b543478f9145ba267715e",
     "references/internal-pricing.md": "58057473d11b57c251cd763c74d23038e38ab679a1dca8039687328221f75470",
     "references/minor-emergency.md": "843933165e1cc3025abd2f72d2e16d621265652f3c7f037d4d2a25196a9cd4ff",
-    "references/overview.md": "814534b6e38a3332da42f6aca95c71b6e89fe1c957fc8b6f32780969ba90fc1a",
+    "references/overview.md": "a6b5db1ae73edcb723ec1a8fa727b321225c1a64286c665e77a1f4618382bc74",
     "references/procurement-method.md": "376f0d6ea112f8e4e85b2742410d963a773b8eb649a04a82875cb3db35949cec",
     "references/scope-attribution.md": "d15914b1ea165deabe475947ad9e8e12c9dba94c05ce38a01e433edafb51f488",
     "references/szyd-procedure.md": "9ec956b54118d4c010ad9fa8432665ea94716a1b23e149aff90a9124e432f118",
@@ -17,9 +17,10 @@
     "references/tender-joint-review.md": "e7d17c0fdac9d1593352e576f6924f573bac0a985c60212da7068ad5589a17b2",
     "resources/approval-matrix.csv": "1fdbbae3f0558041399222768ec382e286786f631cd7ddcafe70af5e60bdc8a0",
     "resources/department-attribution.md": "c0cd092b96c212eeea63183fd92d8c75e6db01d0e5fa07cb997c17a48b033921",
-    "SKILL.md": "4aad6a3eef42c37969a58cf59725ea16f986c50e160a51e056fa817c1dc90fcd"
+    "SKILL.md": "f9e0103610778e4162104817000ae07fa40791679962cfa73898ba48f22d2eed",
+    "references/intake-checklist.md": "ff00e07728e7ec5828f6f793e946c9e3ebbf1969e085a6b153eb26600dbc75e8"
   },
-  "note": "v1.2.0 条文复核修正（60号第二十二条转致条款 → 78号第六条，按董事会口径）；published_hashes 全量重算（2026-11-06）。重编译前比对本清单，检测到本地手改不得静默覆盖。",
+  "note": "v1.3.0 新增调用前置信息采集硬门禁（references/intake-checklist.md）；published_hashes 全量重算并补录新键（2026-11-06）。重编译前比对本清单，检测到本地手改不得静默覆盖。",
   "bundle_id": "bundle.quanyun-procurement",
   "bundle_sha256": "4b316fd8a59bc3ed90b1c842c51c8d7e5f7991b4e87603bb16cb9b8122142db5",
   "variant": "single",
@@ -50,5 +51,5 @@
       "reason": "开放平台要求 SKILL.md frontmatter 含 display_name/display_name_en/description_zh/description_en/version/author"
     }
   },
-  "updated_at": "2026-11-06T12:40:00+08:00"
+  "updated_at": "2026-11-06T13:01:00+08:00"
 }

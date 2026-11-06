@@ -64,3 +64,20 @@ python scripts/cangjie.py compile \
 **仍未同步项（下次全量重编译前必须处理）**：bundle 的 `capabilities` 列表仍为 9 项，未补录 `tender-joint-review`；`entry.name` 仍为 `quanyun-procurement`（编译产物为 `qycg-skill`）；`entry.description` 未补 244号 与转致规则相关触发词。若直接重编译，会丢失第 10 张卡并把技能名改回旧值，须先按既有条目格式补录后再编译。
 
 **遗留不确定项**：采购办法中的"集团领导会议"是否即"总经理办公会"，以及董事会审议与采购领导小组专题会的先后顺序，四份文件均未定义。v1.2 的处理是两套会议并存留痕、涉及排期提示核对集团现行做法，不自行删减环节。
+
+## v1.3.0 调用前置信息采集门禁（2026-11-06，流水线外）
+
+需求：用户要求把「必写 6 项 / 按场景必须补写 / 建议写」封装进 Skill，并规定**调用后必须先填写这些内容，才输出调用结果**。
+
+**实现**：门禁不是能力卡，而是入口的硬规则 + 一张全书卡，避免在路由表里与 10 项能力竞争意图匹配。
+
+- 新增 `references/intake-checklist.md`（同步一份到 `book/intake-checklist.md`）：必写 6 项表（含逐项条款依据）、9 类按场景补写项、建议写项、不适用范围、采集表固定输出格式、可复制填写模板、豁免与初判规则。
+- `SKILL.md`：version 1.2.0→1.3.0；新增「调用前置门禁（每次调用第 0 步，先于一切判定）」章节；核心原则第 10 条「先填后答」；加载规则第 0 步；边界与判停首条（信息不全优先级最高）；路由表标题与「非能力类查询」加指向；description_zh / description_en / description 与 Triggers 同步（新增 调用前置/信息采集/采集表/先填后答）。
+- 4 张全书卡同步：`overview.md`（调用前提）、`glossary.md`（Intake Gate 术语）、`cheatsheet.md`（速查行）、`capability-index.md`（表后「调用前置」注记）。能力卡本身不改，`capability-count` 保持 10。
+- bundle：`verified.yaml` core_principles 加第 10 条、stop_conditions 加门禁首条；`book/overview.md`、`book/glossary.md` 同步；新增 `book/intake-checklist.md`。
+- 审计：`verified.md` 新增 T8（估算价写"约几十万"且预算状态未说明 → 只输出采集表）、`README.md` 覆盖范围/安装提示/目录结构/版本记录/生成方式、本节。
+- `BUILD_MANIFEST.json` 新增 `references/intake-checklist.md` 键并重算全部哈希；`dist/qycg-skill.zip` 重建（19 文件）。
+
+**门禁行为要点**：未填齐时唯一允许的输出是「信息采集表」（列出已填/缺失、一次问齐、附模板），**不得夹带档位、审批主体、采购方式、流程环节或条文号**；用户补齐后只追问仍缺项；纯术语解释与整书概览类问题豁免；用户明确要求"先给大致判断"时可出结论但须整篇标注「基于未填齐信息的初判」；建议写项缺失不阻塞但须在结论末尾标注「未给出 / 按 X 假设 / 我不知道」。
+
+**仍未同步项（沿用 v1.2 记录）**：bundle capabilities 仍 9 项、`entry.name` 仍 `quanyun-procurement`、entry.description 未补 244 号与门禁相关触发词。下次全量重编译前须补录，否则会丢第 10 张卡、把技能名改回旧值，并可能覆盖门禁入口规则（门禁写在 SKILL.md 而非 verified.yaml 的 entry 结构中，重编译会重建入口）。

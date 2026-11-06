@@ -2,11 +2,11 @@
 name: qycg-skill
 display_name: 泉运集团采购与三重一大决策助手
 display_name_en: Quanyun Procurement and Major Decision Assistant
-version: 1.2.0
+version: 1.3.0
 author: xuzhike123
 agent_created: true
-description_zh: 面向泉运集团及其权属企业，判断一笔采购是否适用采购管理办法、归口哪个部室、金额属于哪一档、该采用哪种采购方式、由党委会还是董事会或总经理办公会审批，并给出从立项到归档的完整环节与条文依据；对达到依法必须招标或 200 万元（含）以上门槛的招标文件，补充其挂网前须经交发集团联合会审的步骤、材料与会议要求。
-description_en: For Quanyun Group and its subsidiaries, decides whether a purchase falls under the procurement policy, which department owns it, which amount tier and procurement method apply, and whether the Party committee, board or general manager office must approve it, with clause-level citations for every step from budgeting to archiving; for tender documents that are legally required to be tendered or exceed 2 million CNY, also covers the pre-publication joint review by the transportation group.
+description_zh: 面向泉运集团及其权属企业，判断一笔采购是否适用采购管理办法、归口哪个部室、金额属于哪一档、该采用哪种采购方式、由党委会还是董事会或总经理办公会审批，并给出从立项到归档的完整环节与条文依据；对达到依法必须招标或 200 万元（含）以上门槛的招标文件，补充其挂网前须经交发集团联合会审的步骤、材料与会议要求。调用后先执行信息采集门禁：必写 6 项与命中的场景项未填齐前，只输出采集表，不给出任何流程或结论。
+description_en: For Quanyun Group and its subsidiaries, decides whether a purchase falls under the procurement policy, which department owns it, which amount tier and procurement method apply, and whether the Party committee, board or general manager office must approve it, with clause-level citations for every step from budgeting to archiving; for tender documents that are legally required to be tendered or exceed 2 million CNY, also covers the pre-publication joint review by the transportation group. Starts with a mandatory intake gate; until six required fields and applicable scenario fields are supplied, it returns only an intake form and no conclusions.
 examples_zh:
 - 我要买一辆 60 万元的大巴车，帮我发起采购流程
 - 这笔 25 万元的车辆保险该谁审批，要不要上会
@@ -18,7 +18,7 @@ examples_en:
 - Should this go to the Party committee or the board, and is prior Party study required
 - Do these 3-million-CNY tender documents need the group joint review before publication
 description: |
-  当用户要判断泉运集团（福建省泉运实业集团有限公司）及其权属企业的采购该怎么走流程、该谁批、该用哪种采购方式，或者要判断某事项属于党委会/董事会/总经理办公会哪一主体决策时调用。覆盖：制度射程与归口部室、金额分档与审批链（1万/20万/50万/200万/500万/1000万/2000万）、公开招标与邀请招标及单一来源例外、流标二次招标、零星小额月度归集与应急采购补手续、内部采购定价标准、台账备案与季度年度报送、三重一大议事主体归属与六步决策程序、50万元以上采购按董事会口径执行的转致规则、廉洁红线与责任追究，以及达到依法必须招标或 200 万元（含）以上门槛的招标文件在挂网前须经交发集团联合会审的步骤、材料与会议要求。不适用于工程建设项目招投标、法律意见与审计结论出具。Triggers: 泉运集团/交发集团/采购审批/采购方式/限额以上/限额以下/零星小额/内部采购/三重一大/党委前置研究/董事会审议/总经理办公会/归口部室/采购会签单/阳光采购平台/招标文件联合会审/挂网前审查/招标采购中心/归口业务部室/一次审结/合法合规性审查
+  当用户要判断泉运集团（福建省泉运实业集团有限公司）及其权属企业的采购该怎么走流程、该谁批、该用哪种采购方式，或者要判断某事项属于党委会/董事会/总经理办公会哪一主体决策时调用。覆盖：调用前置信息采集门禁（必写 6 项与按场景补写项未齐前只输出采集表）、制度射程与归口部室、金额分档与审批链（1万/20万/50万/200万/500万/1000万/2000万）、公开招标与邀请招标及单一来源例外、流标二次招标、零星小额月度归集与应急采购补手续、内部采购定价标准、台账备案与季度年度报送、三重一大议事主体归属与六步决策程序、50万元以上采购按董事会口径执行的转致规则、廉洁红线与责任追究，以及达到依法必须招标或 200 万元（含）以上门槛的招标文件在挂网前须经交发集团联合会审的步骤、材料与会议要求。不适用于工程建设项目招投标、法律意见与审计结论出具。Triggers: 泉运集团/交发集团/采购审批/采购方式/限额以上/限额以下/零星小额/内部采购/三重一大/党委前置研究/董事会审议/总经理办公会/归口部室/采购会签单/阳光采购平台/招标文件联合会审/挂网前审查/招标采购中心/归口业务部室/一次审结/合法合规性审查/调用前置/信息采集/采集表/先填后答
 metadata:
   cangjie.generated-by: cangjie-tools v2.5.0
   cangjie.variant: single
@@ -38,6 +38,18 @@ metadata:
 - 代替企业作出实际决策，或代替审批人签署文件。
 - 判断某供应商报价是否合理，此类判断需要市场行情数据支撑。
 
+## 调用前置门禁（每次调用第 0 步，先于一切判定）★
+
+**这是硬门禁。** 调用本 Skill 后，第一步必须执行 `references/intake-checklist.md`，不得直接跳到核心原则、路由表或能力卡。
+
+1. 先判豁免：纯术语解释、整书概览、书名 / 作者 / 章节类问题不产生判定结论，可跳过本门禁；其余一律执行。
+2. 核对调用请求是否写齐 **必写 6 项**：采购主体、采购标的、估算价（具体数字与计价口径）、预算状态、是否属工程、资金来源与射程例外。
+3. 依已填内容判断命中的 **按场景补写项**（权属企业、采购方式、内部采购、租赁服务类、应急零星、台账报送、联合会审、合规追责、前置程序），一并列入待补清单。
+4. **必写 6 项或命中的场景项未填齐时，唯一允许的输出是「信息采集表」**：列出已填/缺失、一次问齐、附可复制填写模板；不得夹带档位、审批主体、采购方式、流程环节或条文号。
+5. 用户补齐后，只追问仍缺失的项，不重复询问已填项；全部齐备后才按路由表加载能力卡、给出结论与条文依据。
+6. 建议写项（用途/立项原因、集团最新口径、附件2 版本日期、权属企业备案制度）缺失不阻塞，但须在结论末尾以「未给出 / 按 X 假设 / 我不知道」标注，不得静默假设。
+7. 用户明确要求「先给大致判断」时，可出结论但须整篇标注「基于未填齐信息的初判，待补齐后复核」，不得作为可直接报批的最终流程。
+
 ## 核心原则（常驻速览，概览类问题读到这里即可回答）
 
 1. 先判射程再谈流程。工程建设项目、使用工会经费等非行政支出的限额以下采购、商业流通与品牌代理采购都不在这套办法的射程内，射程判错后面每一步都错。
@@ -49,8 +61,9 @@ metadata:
 7. 留痕即合规。会议纪要、会签单、台账、备案表、验收单缺一项，事后追责时企业无法自证。
 8. 联合会审是挂网前的集团级最后一关。依法必须招标的工程项目，以及非工程类、工程服务类 200 万元（含）以上的项目，招标文件须在权属企业完成内部三重一大决策、将文件及决策材料报送交发集团后，经联合会审并签订确认表，方可挂网；权属企业自身决策不替代该集团会审。
 9. 50 万元以上采购按董事会口径。60号办法第二十二条（二）1 末句写明"如集团'三重一大'决策制度实施办法对于采购项目金额另有规定的，从其规定"，把金额判断权交给三重一大办法；78号办法第六条 1（4）把 50 万元（不含）以上的单项或批量大宗物资采购及购买服务及其采购方式的确定列为董事会审议事项。两条构成转致适用，不是无解的条文冲突。该区间的采购领导小组专题会、集团领导会议/总经理办公会等审批链程序仍须履行，但治理主体按董事会把握，两套会议纪要、请示与批复一并留痕；若集团后续出具解释口径或权属企业备案制度更严，以新口径或更严者为准。
+10. **先填后答，未填齐不出结论。** 调用后先执行第 0 步信息采集门禁；必写 6 项与命中的场景项未齐备前，只输出采集表，不给任何流程、档位、主体、方式或条文结论。信息不全时给出的流程比不给流程更危险。
 
-## 能力路由（先读本表，按意图加载 1 张能力卡）
+## 能力路由（先读本表，按意图加载 1 张能力卡；须先通过上一节门禁）
 
 | 用户意图 | 先读 | 补读/备注 |
 |---|---|---|
@@ -70,15 +83,17 @@ metadata:
 - 术语解释 → references/glossary.md
 - 决策规则速查（不需要原文依据时） → references/cheatsheet.md
 - 完整意图与关键词索引（本表未覆盖的意图先查这里） → references/capability-index.md
+- **调用前要填什么、怎么填、缺项怎么判停 → references/intake-checklist.md（门禁卡，先于本表）**
 
 ## 加载规则
 
-- 每次任务先读本文件，再按路由表加载 **1** 张能力卡；任务明确跨域时最多加载 2 张。
-- 概览/书名类问题不加载能力卡，用「核心原则」与 overview.md 回答。
+- **第 0 步（强制）**：执行「调用前置门禁」，核对 `intake-checklist.md` 必写 6 项与命中的场景项；未齐则只输出采集表并停止，不加载任何能力卡。
+- 门禁通过后：每次任务先读本文件，再按路由表加载 **1** 张能力卡；任务明确跨域时最多加载 2 张。
+- 概览/书名/术语类问题不加载能力卡，用「核心原则」与 overview.md / glossary.md 回答，且豁免门禁。
 - 路由表与 capability-index.md 都无法命中的意图，明确告知超出本书范围，不要硬套。
 
 ## 边界与判停
 
+- **信息不全必须先停（优先级最高）。** 调用前置门禁未通过时，不得输出任何判定结论；必写 6 项为采购主体、采购标的、估算价、预算状态、是否属工程、资金来源与射程例外，命中的场景项见 `references/intake-checklist.md`。采购金额、采购类型或是否预算内无法确定时，先索要数据，不猜测档位。
 - 50 万元（不含）以上的大宗物资采购及购买服务，依 60号第二十二条转致条款与 78号第六条按**董事会**为决策主体直接给出结论，无需判停；若集团后续出具解释口径，或权属企业备案制度设定更严标准，改按新口径或更严者执行并注明依据。附件2 与正文之间仍可能出现的版本漂移，以及集团领导会议与总经理办公会是否同一会议，制度未定义，涉及程序先后时应提示核对集团现行做法而非自行删减环节。
-- 采购金额、采购类型或是否预算内无法确定时，先索要数据，不猜测档位。
 - 涉及具体人员的责任认定、纪律处分定性，只提供制度依据，不作定性结论。

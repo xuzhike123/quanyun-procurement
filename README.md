@@ -20,6 +20,7 @@
 - 三重一大六步决策程序与追认、零报告
 - 廉洁红线、监督分工与追责免责
 - **招标文件联合会审（v1.1 新增）**：依法必须招标工程 / 非工程类与工程服务类 200 万元（含）以上的招标文件，挂网前须经交发集团联合会审——八步流程、配套材料、一次审结、公示后 5 个工作日 OA 备案
+- **调用前置信息采集门禁（v1.3 新增）**：调用后先核对必写 6 项与命中的场景补写项，未填齐前只输出「信息采集表」，不给任何流程、档位、审批主体、采购方式或条文结论；纯术语 / 整书概览类问题豁免
 
 ## 安装
 
@@ -31,28 +32,30 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 
 项目级安装（只在某个项目可用）：把仓库克隆到 `<项目>/.workbuddy/skills/qycg-skill`。
 
-安装后新开一个任务即可触发，例如：
+安装后新开一个任务即可触发。**v1.3.0 起会先执行信息采集门禁**：必写 6 项（采购主体、采购标的、估算价及计价口径、预算状态、是否属工程、资金来源与射程例外）与命中的场景项未填齐时，只返回「信息采集表」；补齐后才出流程与依据。填写模板见 `references/intake-checklist.md` 第六节。
 
-- 「权属企业要买 60 万元车辆保险，预算内，怎么走」
-- 「150 万元的物资采购要不要上董事会」
-- 「设备故障急着买，能不能先买后补」
-- 「这批 300 万的设备招标文件挂网前要办什么手续」
+示例（信息齐备，可直接出结论）：
+
+- 「集团本部采购 60 万元车辆保险，预算内、非工程、自有资金，怎么走」
+- 「150 万元的物资采购，权属企业已内部决策，要不要上董事会」
+- 「这批 300 万的设备招标文件，非工程类、预算内，挂网前要办什么手续」
 
 ## 目录结构
 
 ```
 .
 ├── SKILL.md                    # 入口：核心原则 + 能力路由表 + 判停条件
-├── references/                 # 10 张能力卡（R/I/A1/A2/E/B 六段）+ 4 张全书卡
+├── references/                 # 10 张能力卡（R/I/A1/A2/E/B 六段）+ 5 张全书卡
 │   ├── overview.md             # 四份文件的整体理解与批判性阅读
 │   ├── glossary.md             # 术语表
 │   ├── cheatsheet.md           # 速查
 │   ├── capability-index.md     # 意图与关键词索引
+│   ├── intake-checklist.md     # 调用前置信息采集门禁（v1.3 新增，先于一切判定）
 │   └── tender-joint-review.md  # 联合会审能力卡（v1.1 新增）
 ├── resources/
 │   ├── approval-matrix.csv     # 金额档 × 主体 × 审批链矩阵
 │   └── department-attribution.md # 归口管理部室对照
-├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成，v1.2 增量重算）
+├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成，v1.3 增量重算）
 └── books/quanyun-procurement/  # 蒸馏过程与审计轨迹
     ├── DIGEST.md               # 面向读者的精华长文
     ├── verified.md             # 三重验证与压力测试记录（T5 已按 v1.2 修正）
@@ -74,6 +77,7 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 
 - **v1.0.0**（2026-10-28）：三份规章蒸馏，9 张能力卡，RIA-TV++ 流水线全量编译。
 - **v1.1.0**（2026-11-03）：新增泉交发〔2026〕244号《招标文件联合会审实施细则》，新增 `tender-joint-review` 能力卡；SKILL.md 路由、触发词与 4 张全书卡同步扩充；`references/` 卡片扁平化为两级结构（与开放平台上传包一致）；BUILD_MANIFEST 哈希全量重算。
+- **v1.3.0**（2026-11-06）：新增**调用前置信息采集硬门禁**。新增 `references/intake-checklist.md`（必写 6 项 / 按场景补写 / 建议写 / 不适用范围 / 采集表固定格式 / 可复制填写模板 / 豁免与初判规则）；`SKILL.md` 新增「调用前置门禁」章节（第 0 步，先于路由表）、核心原则第 10 条、加载规则第 0 步、边界与判停首条，description 与触发词同步；4 张全书卡、bundle 的 `verified.yaml`、`book/` 两张卡与新增门禁卡、压力测试 T8 同步。能力卡数量仍为 10，门禁卡属全书卡、不参与意图匹配。BUILD_MANIFEST 哈希重算，上传包重建。
 - **v1.2.0**（2026-11-06）：修正 50 万元以上采购决策主体判定。复核原文发现 60号办法第二十二条（二）1 末句转致条款"如集团'三重一大'决策制度实施办法对于采购项目金额另有规定的，从其规定"，与 78号办法第六条 1（4）合并适用后应按**董事会**口径执行，原"条文冲突、交人工确认"的判停表述作废。同步修正 `SKILL.md`（核心原则第 9 条 + 判停条件）、`szyd-routing.md`、`overview.md`、`approval-route.md`、`cheatsheet.md`、`glossary.md`，以及 bundle 的 `verified.yaml`、两张 cards、两张 book 卡、`needs-review.md`、`verified.md` T5 用例、`DIGEST.md`；版本号 1.0.0 → 1.2.0；BUILD_MANIFEST 哈希重算，上传包重建。
 
 ## 已知问题与已消解的分歧
@@ -89,7 +93,7 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 
 ## 生成方式
 
-由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：v1.0 九项能力全部通过三重验证，全部保留在单一入口内（single 模式）；v1.1 为增量更新（新增能力卡直接同步自安装版并重算清单哈希）；v1.2 为条文复核后的口径修正（编译产物与流水线事实源同步修订）。编译产物通过 `validate_skill_pack.py` 校验（0 error / 0 warning）。
+由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：v1.0 九项能力全部通过三重验证，全部保留在单一入口内（single 模式）；v1.1 为增量更新（新增能力卡直接同步自安装版并重算清单哈希）；v1.2 为条文复核后的口径修正（编译产物与流水线事实源同步修订）；v1.3 新增调用前置信息采集门禁（全书卡 + 入口硬规则，能力卡数不变）。编译产物通过 `validate_skill_pack.py` 校验（0 error / 0 warning）。
 
 ## 许可证
 
