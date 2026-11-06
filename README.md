@@ -52,13 +52,13 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 ├── resources/
 │   ├── approval-matrix.csv     # 金额档 × 主体 × 审批链矩阵
 │   └── department-attribution.md # 归口管理部室对照
-├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成，v1.1 增量重算）
+├── BUILD_MANIFEST.json         # 编译清单（cangjie-tools v2.5.0 生成，v1.2 增量重算）
 └── books/quanyun-procurement/  # 蒸馏过程与审计轨迹
     ├── DIGEST.md               # 面向读者的精华长文
-    ├── verified.md             # 三重验证与压力测试记录
+    ├── verified.md             # 三重验证与压力测试记录（T5 已按 v1.2 修正）
     ├── coverage-audit.md       # 关键任务 → 交付去向审计
-    ├── needs-review.md         # 条文冲突与来源缺口
-    └── .cangjie/capabilities/  # 唯一编译事实源（verified.yaml + cards/，v1.0 状态）
+    ├── needs-review.md         # 来源缺口、适用注意项与已消解的分歧
+    └── .cangjie/capabilities/  # 唯一编译事实源（v1.0 九卡结构；v1.2 已补录原则与判停条件）
 ```
 
 ## 来源
@@ -74,10 +74,14 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 
 - **v1.0.0**（2026-10-28）：三份规章蒸馏，9 张能力卡，RIA-TV++ 流水线全量编译。
 - **v1.1.0**（2026-11-03）：新增泉交发〔2026〕244号《招标文件联合会审实施细则》，新增 `tender-joint-review` 能力卡；SKILL.md 路由、触发词与 4 张全书卡同步扩充；`references/` 卡片扁平化为两级结构（与开放平台上传包一致）；BUILD_MANIFEST 哈希全量重算。
+- **v1.2.0**（2026-11-06）：修正 50 万元以上采购决策主体判定。复核原文发现 60号办法第二十二条（二）1 末句转致条款"如集团'三重一大'决策制度实施办法对于采购项目金额另有规定的，从其规定"，与 78号办法第六条 1（4）合并适用后应按**董事会**口径执行，原"条文冲突、交人工确认"的判停表述作废。同步修正 `SKILL.md`（核心原则第 9 条 + 判停条件）、`szyd-routing.md`、`overview.md`、`approval-route.md`、`cheatsheet.md`、`glossary.md`，以及 bundle 的 `verified.yaml`、两张 cards、两张 book 卡、`needs-review.md`、`verified.md` T5 用例、`DIGEST.md`；版本号 1.0.0 → 1.2.0；BUILD_MANIFEST 哈希重算，上传包重建。
 
-## 已知问题
+## 已知问题与已消解的分歧
 
-`books/quanyun-procurement/needs-review.md` 记录了 6 项待核查事项，其中最关键的一条是**条文冲突**：50 万元（不含）以上物资采购的决策主体，三重一大办法指向董事会，采购办法及其附件 2 指向总经理办公会，两份文件同日印发。本 Skill 在该区间不自行取舍，会停下提示人工确认。
+`books/quanyun-procurement/needs-review.md` 记录来源缺口与适用注意项。
+
+- **已消解（v1.2.0）**：50 万元（不含）以上物资采购的决策主体。60号办法第二十二条（二）1 末句把采购项目的金额判断权转致给三重一大办法，78号办法第六条 1（4）据此把该类事项列为董事会审议事项。本 Skill 现按**董事会**口径给出治理主体，采购领导小组专题会等审批链环节照常履行、两套会议并存留痕，直接给出结论而不再判停；集团后续解释口径或权属企业更严制度优先。
+- **仍待核查**：供应商评价办法（闽泉运综合〔2026〕33号）等外部文件原文未提供；附件2 标注"动态更新"，与正文存在潜在漂移；权属企业备案制度未取得。
 
 ## 免责
 
@@ -85,7 +89,7 @@ git clone https://github.com/xuzhike123/quanyun-procurement.git ~/.workbuddy/ski
 
 ## 生成方式
 
-由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：v1.0 九项能力全部通过三重验证，全部保留在单一入口内（single 模式）；v1.1 为增量更新（新增能力卡直接同步自安装版并重算清单哈希），编译产物通过 `validate_skill_pack.py` 校验（0 error / 0 warning）。
+由 [cangjie-skill](https://github.com/kangarooking/cangjie-skill) v2.5.0 的 RIA-TV++ 流水线生成：v1.0 九项能力全部通过三重验证，全部保留在单一入口内（single 模式）；v1.1 为增量更新（新增能力卡直接同步自安装版并重算清单哈希）；v1.2 为条文复核后的口径修正（编译产物与流水线事实源同步修订）。编译产物通过 `validate_skill_pack.py` 校验（0 error / 0 warning）。
 
 ## 许可证
 
